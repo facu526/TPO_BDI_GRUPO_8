@@ -48,6 +48,22 @@ JOIN Metodo_Pago mp ON p.id_metodo_pago = mp.id_metodo_pago
 JOIN Estado_Pago ep ON p.id_estado_pago = ep.id_estado_pago;
 GO
 
+CREATE VIEW VW_Promociones_Vigentes AS
+SELECT
+    p.id_promocion,
+    p.nombre AS promocion,
+    p.descuento_porcentaje,
+    p.fecha_inicio,
+    p.fecha_fin,
+    d.nombre AS deporte,
+    s.nombre AS sede
+FROM Promocion p
+LEFT JOIN Deporte d ON p.id_deporte = d.id_deporte
+LEFT JOIN Sede s ON p.id_sede = s.id_sede
+WHERE GETDATE() BETWEEN p.fecha_inicio AND p.fecha_fin;
+GO
+
 SELECT * FROM VW_Reservas_Cliente_Estado;
 SELECT * FROM VW_Canchas_Sede_Deporte;
 SELECT * FROM VW_Pagos_Metodo_Estado;
+SELECT * FROM VW_Promociones_Vigentes;
