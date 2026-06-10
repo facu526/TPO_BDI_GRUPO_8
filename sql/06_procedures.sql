@@ -1,8 +1,6 @@
 USE ComplejoDeportivo;
 GO
 
-DROP PROCEDURE IF EXISTS SP_ListarReservasPorCliente;
-GO
 
 CREATE PROCEDURE SP_ListarReservasPorCliente
     @id_cliente INT
@@ -21,9 +19,6 @@ BEGIN
     JOIN Estado_Reserva er ON r.id_estado_reserva = er.id_estado_reserva
     WHERE r.id_cliente = @id_cliente;
 END;
-GO
-
-DROP PROCEDURE IF EXISTS SP_ListarReservasPorFecha;
 GO
 
 CREATE PROCEDURE SP_ListarReservasPorFecha
@@ -49,9 +44,6 @@ BEGIN
 END;
 GO
 
-
-DROP PROCEDURE IF EXISTS SP_RegistrarPago;
-GO
 
 CREATE PROCEDURE SP_RegistrarPago
     @id_reserva INT,
@@ -81,8 +73,7 @@ END;
 GO
 
 
-DROP PROCEDURE IF EXISTS SP_RegistrarReserva;
-GO
+
 
 CREATE PROCEDURE SP_RegistrarReserva
     @id_cliente INT,
