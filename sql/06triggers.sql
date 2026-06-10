@@ -88,3 +88,16 @@ BEGIN
     FROM deleted;
 END;
 GO
+
+CREATE TRIGGER TR_ConfirmarReserva_Auto
+ON Pago
+AFTER INSERT
+AS
+BEGIN
+    UPDATE r
+    SET r.id_estado_reserva = 2 
+    FROM Reserva r
+    JOIN inserted i ON r.id_reserva = i.id_reserva
+    WHERE i.id_estado_pago = 3; 
+END;
+GO
